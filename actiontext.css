@@ -1,0 +1,87 @@
+/*
+ * Provides a drop-in pointer for the default Trix stylesheet that will format the toolbar and
+ * the trix-editor content (whether displayed or under editing). Feel free to incorporate this
+ * inclusion directly in any other asset bundle and remove this file.
+ *
+ *= require trix
+*/
+
+/*
+ * We need to override trix.css’s image gallery styles to accommodate the
+ * <action-text-attachment> element we wrap around attachments. Otherwise,
+ * images in galleries will be squished by the max-width: 33%; rule.
+*/
+
+.trix-content .attachment-gallery > action-text-attachment,
+.trix-content .attachment-gallery > .attachment {
+  flex: 1 0 33%;
+  padding: 0 0.5em;
+  max-width: 33%;
+}
+
+.trix-content .attachment-gallery.attachment-gallery--2 > action-text-attachment,
+.trix-content .attachment-gallery.attachment-gallery--2 > .attachment, .trix-content .attachment-gallery.attachment-gallery--4 > action-text-attachment,
+.trix-content .attachment-gallery.attachment-gallery--4 > .attachment {
+  flex-basis: 50%;
+  max-width: 50%;
+}
+
+.trix-content action-text-attachment .attachment {
+  padding: 0 !important;
+  max-width: 100% !important;
+}
+
+
+.trix-button {
+  background-color: blue;
+}
+
+@layer components {
+  .trix-button-row {
+    @apply flex mb-1
+  }
+  .trix-toolbar-1 {
+    @apply flex 
+  }
+  .trix-button-group--text-tools {
+    @apply flex px-4 pl-0
+  }
+  .trix-button-group--text-tools .trix-button {
+    @apply bg-gray-100 hover:bg-gray-700 hover:text-gray-100 text-gray-600 font-bold py-2 px-4 border border-gray-500
+  }
+  .trix-button-group--block-tools {
+    @apply flex px-4
+  }
+  .trix-button-group--block-tools .trix-button {
+    @apply bg-gray-100 hover:bg-gray-700 hover:text-gray-100 text-gray-600 font-bold py-2 px-4 border border-gray-500
+  }
+  .trix-button-group--file-tools {
+    @apply flex px-4
+  }
+  .trix-button-group--file-tools .trix-button {
+    @apply bg-gray-100 hover:bg-gray-700 hover:text-gray-100 text-gray-600 font-bold py-2 px-4 border border-gray-500
+  }
+  .trix-button-group--history-tools {
+    @apply flex lg:flex-1 lg:justify-end
+  }
+  .trix-button-group--history-tools .trix-button {
+    @apply bg-gray-100 hover:bg-gray-700 hover:text-gray-100 text-gray-600 font-bold py-2 px-4 border border-gray-500
+  }
+  /* Styles for code lines */
+  .trix-content pre {
+    @apply bg-slate-800 flex-auto relative block text-slate-200 overflow-auto p-4
+  }
+
+  /* Styles for Links */
+  .trix-content a {
+    @apply text-blue-500 underline;
+  }
+  .trix-content a:hover {
+    @apply text-blue-700;
+  }
+
+  /* Trix Editor */
+  trix-editor div a {
+    @apply text-blue-500 underline;
+  }
+};
